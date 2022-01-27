@@ -45,17 +45,18 @@ d3.json(queryUrl).then(function(data) {
 
     // Adding legend
     var legend = L.control({position: 'bottomright'});
-    categ_val = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5];
 
-    legend.onAdd = function (myMap) {
+    legend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend'),
             grades = [1.0, 2.5, 4.0, 5.5, 7.0],
             labels = [];
 
-        div.innerHTML +=
+        for (var i = 0; i < grades.length; i++) {
+          div.innerHTML +=
             '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-    
+        }
+        
         return div;
     };
 
